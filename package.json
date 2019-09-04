@@ -1,0 +1,49 @@
+{
+  "name": "auth_service",
+  "version": "1.0.0",
+  "description": "Authentication service for budget app microservice architecture",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domiebett/auth_service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/domiebett/auth_service/issues"
+  },
+  "homepage": "https://github.com/domiebett/auth_service#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pm2": "^3.5.1",
+    "routing-controllers": "^0.7.7",
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.18"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/body-parser": "^1.17.1",
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.1",
+    "@types/jsonwebtoken": "^8.3.3",
+    "@types/node": "^12.7.4",
+    "@types/passport": "^1.0.1",
+    "@types/passport-jwt": "^3.0.1",
+    "@types/passport-local": "^1.0.33",
+    "nodemon": "^1.19.2"
+  }
+}
