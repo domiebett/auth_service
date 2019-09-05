@@ -2,6 +2,7 @@ import { ExpressConfig } from './ExpressConfig';
 import { DatabaseConnector } from '../../data-layer/adapter/DatabaseConnector';
 import { EurekaService } from './EurekaService';
 import { Eureka } from 'eureka-js-client';
+import { logger } from '@bit/domiebett.budget_app.logging';
 
 export class Application {
     private express: ExpressConfig;
@@ -32,7 +33,7 @@ export class Application {
             if (error) {
                 return process.exit(1);
             } else {
-                console.log(`Server started on port ${this.port}`);
+                logger.info(`Server started on port ${this.port}.`);
             }
         });
     }
@@ -41,7 +42,7 @@ export class Application {
      * Connect to the database
      */
     private async connectToDatabase() {
-        await console.log('Creating database connection...');
+        await logger.info('Creating database conneciton...');
         return await DatabaseConnector.connect();
     }
 
@@ -50,8 +51,7 @@ export class Application {
      */
     private async connectToEureka() {
         const client: Eureka = EurekaService.getClient();
-
-        await console.log('Connecting to eureka...');
+        await logger.info('Connecting to eureka...');
         return await client.start();
     }
 }
