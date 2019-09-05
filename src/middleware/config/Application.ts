@@ -1,4 +1,5 @@
 import { ExpressConfig } from './ExpressConfig';
+import { DatabaseConnector } from '../../data-layer/adapter/DatabaseConnector';
 
 export class Application {
     private express: ExpressConfig;
@@ -16,6 +17,7 @@ export class Application {
      */
     private async setUpApplication() {
         await this.setUpServer();
+        await this.connectToDatabase();
     }
 
     /**
@@ -30,5 +32,13 @@ export class Application {
                 console.log(`Server started on port ${this.port}`);
             }
         });
+    }
+
+    /**
+     * Connect to the database
+     */
+    private async connectToDatabase() {
+        await console.log('Creating database connection...');
+        return await DatabaseConnector.connect();
     }
 }

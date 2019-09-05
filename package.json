@@ -4,7 +4,11 @@
   "description": "Authentication service for budget app microservice architecture",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db": "typeorm",
+    "clean": "rimraf build",
+    "compile": "tsc",
+    "start": "npm run clean && npm run compile && pm2-runtime start build/index.js",
+    "dev": "nodemon -e ts --ignore \"./tests\" --exec \"npm run start\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "pm2": "^3.5.1",
+    "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.7.7",
     "typedi": "^0.8.0",
     "typeorm": "^0.2.18"
@@ -44,6 +49,7 @@
     "@types/passport": "^1.0.1",
     "@types/passport-jwt": "^3.0.1",
     "@types/passport-local": "^1.0.33",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "typescript": "3.5.3"
   }
 }
