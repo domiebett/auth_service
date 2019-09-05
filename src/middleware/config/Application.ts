@@ -1,5 +1,7 @@
 import { ExpressConfig } from './ExpressConfig';
 import { DatabaseConnector } from '../../data-layer/adapter/DatabaseConnector';
+import { EurekaService } from './EurekaService';
+import { Eureka } from 'eureka-js-client';
 
 export class Application {
     private express: ExpressConfig;
@@ -18,6 +20,7 @@ export class Application {
     private async setUpApplication() {
         await this.setUpServer();
         await this.connectToDatabase();
+        await this.connectToEureka();
     }
 
     /**
@@ -40,5 +43,15 @@ export class Application {
     private async connectToDatabase() {
         await console.log('Creating database connection...');
         return await DatabaseConnector.connect();
+    }
+
+    /**
+     * Connect to eureka service
+     */
+    private async connectToEureka() {
+        const client: Eureka = EurekaService.getClient();
+
+        await console.log('Connecting to eureka...');
+        return await client.start();
     }
 }
