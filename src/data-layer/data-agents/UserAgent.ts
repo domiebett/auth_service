@@ -42,6 +42,11 @@ export class UserAgent {
         return await this.userRepository.findOne({email: email});
     }
 
+    /**
+     * Get a user by jwt token
+     * @param bearerToken - bearer token provided in request.
+     * @return { Promise<User> }
+     */
     async getUserByToken(bearerToken: string): Promise<User> {
         const payload: any = await TokenService.extractJwtPayload(bearerToken);
         return await this.getUserById(payload.user.id)

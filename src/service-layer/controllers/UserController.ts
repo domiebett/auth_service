@@ -9,7 +9,7 @@ export class UserController {
     constructor(private userAgent: UserAgent) { }
 
     @Get('/me')
-    async getUserById(@CurrentUser({ required: true }) user: User, @Res() res: Response) {
+    async getCurrentUser(@CurrentUser({ required: true }) user: User, @Res() res: Response) {
         return { data: user };
     }
 }
