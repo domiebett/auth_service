@@ -7,6 +7,7 @@ import { useExpressServer, useContainer as routeUseContainer, Action } from 'rou
 import { useContainer as ormUseContainer } from 'typeorm';
 import { Container } from 'typedi';
 import { UserAgent } from '../../data-layer/data-agents/UserAgent';
+import * as jwtAuth from '@bit/domiebett.budget_app.jwt-authenticate';
 
 export class ExpressConfig {
     public app: express.Application;
@@ -39,15 +40,9 @@ export class ExpressConfig {
             controllers: [controllersPath + '/*.js'],
             cors: true,
             interceptors: [interceptorsPath + '/*.js'],
-            authorizationChecker: async (action: Action) => {
-                const token = action.request.headers['authorization'];
-                const user = await this.userAgent.getUserByToken(token);
-                if (user && user.email) return true;
-                return false;
-            },
             currentUserChecker: async (action: Action) => {
-                const token = action.request.headers['authorization'];
-                return await this.userAgent.getUserByToken(token);
+                const userId = action.request.headers['user-id'];
+                return await this.userAgent.getUserById(userId);
             }
         });
     }
