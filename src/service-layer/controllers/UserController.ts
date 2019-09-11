@@ -7,6 +7,7 @@ import { User } from '../../data-layer/entity/User';
 export class UserController {
     constructor(private userAgent: UserAgent) { }
 
+    @Authorized()
     @Get('/me')
     async getCurrentUser(@Req() req: Request, @Res() res: Response) {
         const userId: any = req.headers['user-id'];

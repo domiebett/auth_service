@@ -40,6 +40,9 @@ export class ExpressConfig {
             controllers: [controllersPath + '/*.js'],
             cors: true,
             interceptors: [interceptorsPath + '/*.js'],
+            authorizationChecker: async (action: Action) => {
+                return action.request.headers['user-id'];
+            },
             currentUserChecker: async (action: Action) => {
                 const userId = action.request.headers['user-id'];
                 return await this.userAgent.getUserById(userId);
