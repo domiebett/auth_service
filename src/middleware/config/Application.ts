@@ -29,7 +29,7 @@ export class Application {
      * @return {express.Application} - served express app server
      */
     private async setUpServer() {
-       return await this.express.app.listen(this.port, (error: any) => {
+        return await this.express.app.listen(this.port, (error: any) => {
             if (error) {
                 return process.exit(1);
             } else {
