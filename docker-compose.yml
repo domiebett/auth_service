@@ -25,7 +25,7 @@ services:
       MYSQL_USER: user_service
       MYSQL_PASSWORD: user_service_password
     ports:
-      - "3308:3306"
+      - "3309:3306"
     networks:
       - budget_app_network
 networks:

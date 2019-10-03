@@ -21,7 +21,7 @@ export class AuthController {
         const user: User = await this.userAgent.getUserByEmail(requestBody.email);
 
         if (user && await user.isValidPassword(requestBody.password)) {
-            const body = {id: user.id };
+            const body = {id: user.id, name: `${user.firstName} ${user.lastName}`, email: user.email };
             const token = await jwt.sign({ user: body }, process.env.APP_SECRET);
             return { user, token };
         } else {
