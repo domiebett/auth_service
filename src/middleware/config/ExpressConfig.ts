@@ -41,11 +41,12 @@ export class ExpressConfig {
             cors: true,
             interceptors: [interceptorsPath + '/*.js'],
             authorizationChecker: async (action: Action) => {
-                return action.request.headers['user-id'];
+                const token = await jwtAuth.getToken(action.request);
+                return jwtAuth.isValidToken(token);
             },
             currentUserChecker: async (action: Action) => {
-                const userId = action.request.headers['user-id'];
-                return await this.userAgent.getUserById(userId);
+                const token = await jwtAuth.getToken(action.request);
+                return jwtAuth.getCurrentUser(token);
             }
         });
     }
