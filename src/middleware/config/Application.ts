@@ -50,8 +50,6 @@ export class Application {
      * Connect to eureka service
      */
     private async connectToEureka() {
-        const client: Eureka = EurekaService.getClient();
-        await logger.info('Connecting to eureka...');
-        return await client.start();
+        return EurekaService.start();
     }
 }
